@@ -5,6 +5,7 @@ import { sidebarLinks } from "@/constans";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { SignOutButton, SignedIn } from "@clerk/nextjs";
 
 const LeftSidebar = () => {
   const router = useRouter();
@@ -33,6 +34,21 @@ const LeftSidebar = () => {
             </Link>
           );
         })}
+      </div>
+      <div className="mt-10 px-6">
+        <SignedIn>
+          <SignOutButton signOutCallback={() => router.push("/sign-in")}>
+            <div className="flex cursor-pointer gap-4 p-4">
+              <Image
+                src="/assets/logout.svg"
+                alt="logaut"
+                width={24}
+                height={24}
+              />
+              <p className="text-light-2 max-lg:hidden">logout</p>
+            </div>
+          </SignOutButton>
+        </SignedIn>
       </div>
     </section>
   );
